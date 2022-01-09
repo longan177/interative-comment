@@ -168,6 +168,7 @@ button {
   width: 35px;
   height: 35px;
 }
+
 .comment-card header a {
   font-weight: 700;
   font-size: 1rem;
@@ -230,4 +231,32 @@ button {
   font-weight: 500;
 }
 
+@media screen and (min-width: 600px) {
+  .comment-card {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0.5rem;
+    position: relative;
+  }
+  .reply {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+  }
+
+  footer {
+  }
+  .comment-card article {
+  }
+  .vote-number {
+    flex-direction: column;
+    /* background-color: red; */
+    gap: 0.2rem;
+    align-self: center;
+  }
+  .vote-number button {
+    padding: 0.8;
+    height: initial;
+  }
+}
 /* comment card */
