@@ -27,7 +27,11 @@ function MainComponent() {
           const layerTwo = false;
           return (
             <li key={id}>
-              <CommentCard detail={comment} layerTwo={layerTwo} />
+              <CommentCard
+                detail={comment}
+                layerTwo={layerTwo}
+                currentUser={currentUser}
+              />
               {replies.length > 0 && (
                 <ul>
                   {replies.map((reply) => {

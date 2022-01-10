@@ -339,7 +339,7 @@ button {
     /* background-color: red; */
     padding-top: 0;
   }
-  .avatar {
+  .reply-card .avatar {
     order: 1;
   }
   .btn-send {
@@ -370,3 +370,23 @@ button {
 }
 
 /* laterTwo */
+
+/* button hover effect */
+button:hover path {
+  fill: var(--clr-dark-blue);
+}
+
+.reply:hover path {
+  fill: var(--clr-lightgrayish-blue);
+}
+.reply:hover span {
+  color: var(--clr-lightgrayish-blue);
+}
+.username:hover {
+  color: var(--clr-dark-blue);
+}
+.btn-send:hover {
+  background-color: var(--clr-dark-blue);
+}
+
+/* button hover effect */
