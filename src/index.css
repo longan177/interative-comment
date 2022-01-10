@@ -76,6 +76,7 @@ ul {
 
 li {
   margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 a {
@@ -155,7 +156,6 @@ button {
 
 /* comment card */
 .comment-card {
-  width: 92%;
   margin: auto;
   background-color: var(--clr-white);
   border-radius: 10px;
@@ -270,7 +270,7 @@ button {
 /* reply card  */
 .reply-card {
   padding-bottom: 1rem;
-  width: 92%;
+
   margin: auto;
   background-color: var(--clr-white);
   border-radius: 10px;
@@ -349,10 +349,8 @@ button {
 
 /* laterTwo */
 .comment-card-wrapper {
-  /* background-color: red; */
   max-width: 730px;
   margin: auto;
-  /* background-color: lightcoral; */
   position: relative;
   width: 92%;
 }
@@ -362,7 +360,7 @@ button {
   margin: 0 0 0 auto;
 }
 
-.comment-card-wrapper::before {
+.wrapper-layerTwo::before {
   content: " ";
   width: 2px;
   height: 100%;
@@ -370,4 +368,5 @@ button {
   position: absolute;
   left: 6%;
 }
+
 /* laterTwo */

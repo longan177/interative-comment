@@ -3,18 +3,42 @@ import CommentCard from "./component/CommentCard";
 import ReplyCard from "./component/ReplyCard";
 
 function MainComponent() {
+  const [comments, setcomments] = useState([]);
+  const [currentUser, setcurrentUser] = useState("");
+  const [otherUser, setOtherUser] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        "https://my-json-server.typicode.com/longan177/mockjson-comment-interative/db"
+      );
+      const data = await response.json();
+      setcomments(data.comments);
+      setcurrentUser(data.currentUser);
+      console.log(data);
+      console.log(comments);
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="comment-container">
       <ul>
-        <li>
-          <ReplyCard />
-        </li>
-        <li>
-          <CommentCard />
-        </li>
-        <li>
-          <CommentCard />
-        </li>
+        {comments.map((comment) => {
+          const { id, replies } = comment;
+          return (
+            <li>
+              <CommentCard />
+              {replies && (
+                <ul>
+                  <li>
+                    <ReplyCard />
+                  </li>
+                </ul>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

@@ -2,28 +2,11 @@ import React, { useEffect, useState } from "react";
 import { deleteIcon, minus, plus, reply } from "./Icon";
 
 function CommentCard() {
-  const [comment, setcomment] = useState("");
-  const [currentUser, setcurrentUser] = useState("");
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        "https://my-json-server.typicode.com/longan177/mockjson-comment-interative/db"
-      );
-      const data = await response.json();
-      setcomment(data.comments);
-      setcurrentUser(data.currentUser);
-      console.log(data);
-      console.log(comment);
-    };
-    fetchData();
-  }, []);
-
   return (
     <div className="comment-card-wrapper">
-      <div className="comment-card layerTwo">
+      <div className="comment-card ">
         <article>
           <header>
-            {currentUser.username}
             <img
               className="avatar"
               src="/images/avatars/image-amyrobson.png"
