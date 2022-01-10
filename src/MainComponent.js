@@ -28,12 +28,12 @@ function MainComponent() {
           const { id, replies } = comment;
           return (
             <li>
-              <CommentCard />
-              {replies && (
+              <CommentCard key={id} {...comment} />
+              {replies.length > 0 && (
                 <ul>
-                  <li>
-                    <ReplyCard />
-                  </li>
+                  {replies.map((reply) => {
+                    return <CommentCard />;
+                  })}
                 </ul>
               )}
             </li>

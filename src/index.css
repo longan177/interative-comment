@@ -75,8 +75,6 @@ ul {
 }
 
 li {
-  margin-bottom: 1rem;
-  margin-top: 1rem;
 }
 
 a {
@@ -156,10 +154,11 @@ button {
 
 /* comment card */
 .comment-card {
-  margin: auto;
+  margin: 1rem auto 1rem;
   background-color: var(--clr-white);
   border-radius: 10px;
   max-width: 730px;
+  width: 100%;
 }
 
 .comment-card header {
@@ -252,6 +251,7 @@ button {
   footer {
   }
   .comment-card article {
+    width: 100%;
   }
   .vote-number {
     flex-direction: column;
@@ -271,7 +271,7 @@ button {
 .reply-card {
   padding-bottom: 1rem;
 
-  margin: auto;
+  margin: 1rem auto 1rem;
   background-color: var(--clr-white);
   border-radius: 10px;
   max-width: 730px;
