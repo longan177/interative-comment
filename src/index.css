@@ -73,6 +73,11 @@ body {
 ul {
   list-style-type: none;
 }
+
+li {
+  margin-bottom: 1rem;
+}
+
 a {
   text-decoration: none;
 }
@@ -141,8 +146,8 @@ button {
 }
 /* comment container */
 .comment-container {
-  padding-top: 2rem;
-  background-color: lightgreen;
+  padding-top: 4rem;
+  /* background-color: lightgreen; */
   max-width: var(--max-width);
   margin: auto;
 }
@@ -252,7 +257,8 @@ button {
     flex-direction: column;
     /* background-color: red; */
     gap: 0.2rem;
-    align-self: center;
+    align-self: flex-start;
+    margin-top: 2rem;
   }
   .vote-number button {
     padding: 0.8;
@@ -340,3 +346,28 @@ button {
     order: 3;
   }
 }
+
+/* laterTwo */
+.comment-card-wrapper {
+  /* background-color: red; */
+  max-width: 730px;
+  margin: auto;
+  /* background-color: lightcoral; */
+  position: relative;
+  width: 92%;
+}
+.layerTwo {
+  /* background-color: gold; */
+  width: 88%;
+  margin: 0 0 0 auto;
+}
+
+.comment-card-wrapper::before {
+  content: " ";
+  width: 2px;
+  height: 100%;
+  background-color: var(--clr-light-gray);
+  position: absolute;
+  left: 6%;
+}
+/* laterTwo */
