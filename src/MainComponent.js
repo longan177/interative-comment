@@ -46,6 +46,7 @@ function MainComponent() {
           );
         })}
       </ul>
+      <ReplyCard />
     </div>
   );
 }

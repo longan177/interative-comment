@@ -4,23 +4,22 @@ import { deleteIcon, minus, plus, reply } from "./Icon";
 function CommentCard(props) {
   const { content, createdAt, score, user } = props.detail;
   const { layerTwo } = props;
-  console.log(layerTwo);
-  console.log(props.layerTwo);
+
   return (
     <div className={`comment-card-wrapper ${layerTwo && "wrapper-layerTwo"}`}>
-      <div className="comment-card ">
+      <div className={`comment-card ${layerTwo && "layerTwo"} `}>
         <article>
           <header>
             <img className="avatar" src={user.image.png}></img>
             <a href="#">ha</a>
-            <span className="date-detail">1 month ago</span>
+            <span className="date-detail">{createdAt}</span>
           </header>
           <p>{content}</p>
         </article>
         <footer>
           <div className="vote-number d-flex">
             <button>{plus}</button>
-            <span>12</span>
+            <span>{score}</span>
             <button>{minus}</button>
           </div>
           <button className="reply d-flex">

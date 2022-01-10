@@ -357,12 +357,12 @@ button {
 .layerTwo {
   /* background-color: gold; */
   width: 88%;
-  margin: 0 0 0 auto;
+  margin: 1rem 0 0 auto;
 }
 
 .wrapper-layerTwo::before {
   content: "";
-  width: 20px;
+  width: 2px;
   height: 100%;
   background-color: var(--clr-light-gray);
   position: absolute;
