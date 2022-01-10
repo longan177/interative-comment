@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { deleteIcon, minus, plus, reply } from "./Icon";
 
-function CommentCard({ content, createdAt, score, user }) {
-  console.log(content);
+function CommentCard(props) {
+  const { content, createdAt, score, user } = props.detail;
+  const { layerTwo } = props;
+  console.log(layerTwo);
+  console.log(props.layerTwo);
   return (
-    <div className="comment-card-wrapper">
+    <div className={`comment-card-wrapper ${layerTwo && "wrapper-layerTwo"}`}>
       <div className="comment-card ">
         <article>
           <header>
-            <img
-              className="avatar"
-              src="/images/avatars/image-amyrobson.png"
-            ></img>
+            <img className="avatar" src={user.image.png}></img>
             <a href="#">ha</a>
             <span className="date-detail">1 month ago</span>
           </header>

@@ -361,8 +361,8 @@ button {
 }
 
 .wrapper-layerTwo::before {
-  content: " ";
-  width: 2px;
+  content: "";
+  width: 20px;
   height: 100%;
   background-color: var(--clr-light-gray);
   position: absolute;

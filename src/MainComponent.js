@@ -15,8 +15,6 @@ function MainComponent() {
       const data = await response.json();
       setcomments(data.comments);
       setcurrentUser(data.currentUser);
-      console.log(data);
-      console.log(comments);
     };
     fetchData();
   }, []);
@@ -26,13 +24,21 @@ function MainComponent() {
       <ul>
         {comments.map((comment) => {
           const { id, replies } = comment;
+          const layerTwo = false;
           return (
-            <li>
-              <CommentCard key={id} {...comment} />
+            <li key={id}>
+              <CommentCard detail={comment} layerTwo={layerTwo} />
               {replies.length > 0 && (
                 <ul>
                   {replies.map((reply) => {
-                    return <CommentCard />;
+                    const layerTwo = true;
+                    return (
+                      <CommentCard
+                        key={reply.id}
+                        detail={reply}
+                        layerTwo={layerTwo}
+                      />
+                    );
                   })}
                 </ul>
               )}
