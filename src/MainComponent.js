@@ -41,6 +41,7 @@ function MainComponent() {
                         key={reply.id}
                         detail={reply}
                         layerTwo={layerTwo}
+                        currentUser={currentUser}
                       />
                     );
                   })}
@@ -50,7 +51,11 @@ function MainComponent() {
           );
         })}
       </ul>
-      <ReplyCard />
+      <ReplyCard
+        currentUser={currentUser}
+        setcomments={setcomments}
+        comment={comments}
+      />
     </div>
   );
 }

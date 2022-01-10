@@ -3,7 +3,7 @@ import { deleteIcon, minus, plus, reply } from "./Icon";
 
 function CommentCard(props) {
   const { content, createdAt, score, user } = props.detail;
-  const { layerTwo } = props;
+  const { layerTwo, currentUser } = props;
   const {
     image: { png },
     username,
@@ -46,10 +46,21 @@ function CommentCard(props) {
               {minus}
             </button>
           </div>
-          <button className="reply d-flex">
-            {reply}
-            <span>Reply</span>
-          </button>
+
+          <div className="btn-reposnse">
+            {username === currentUser.username ? (
+              <button className="delete d-flex">
+                {deleteIcon}
+                <span>Delete</span>
+              </button>
+            ) : (
+              ""
+            )}
+            <button className="reply d-flex">
+              {reply}
+              <span>Reply</span>
+            </button>
+          </div>
         </footer>
       </div>
     </div>
