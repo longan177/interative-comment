@@ -9,6 +9,7 @@ function CommentCard(props) {
     username,
   } = user;
 
+  const [currentScore, setcurrentScore] = useState(score);
   return (
     <div className={`comment-card-wrapper ${layerTwo && "wrapper-layerTwo"}`}>
       <div className={`comment-card ${layerTwo && "layerTwo"} `}>
@@ -24,9 +25,26 @@ function CommentCard(props) {
         </article>
         <footer>
           <div className="vote-number d-flex">
-            <button className="btn-plus">{plus}</button>
-            <span>{score}</span>
-            <button>{minus}</button>
+            <button
+              onClick={() => {
+                if (currentScore - score !== 1) {
+                  setcurrentScore(currentScore + 1);
+                }
+              }}
+              className="btn-plus"
+            >
+              {plus}
+            </button>
+            <span>{currentScore}</span>
+            <button
+              onClick={() => {
+                if (currentScore - score !== -1) {
+                  setcurrentScore(currentScore - 1);
+                }
+              }}
+            >
+              {minus}
+            </button>
           </div>
           <button className="reply d-flex">
             {reply}
