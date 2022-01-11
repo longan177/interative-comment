@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { deleteIcon, minus, plus, reply } from "./Icon";
+import ReplyCard from "./ReplyCard";
 
 function CommentCard(props) {
   const { content, createdAt, score, user, id } = props.detail;
-  const { layerTwo, currentUser, handleDelete } = props;
+  const {
+    layerTwo,
+    currentUser,
+    handleDelete,
+    commentdetail,
+    idNum,
+    comments,
+  } = props;
+  const [toReply, settoReply] = useState(true);
   const {
     image: { png },
     username,
@@ -61,13 +70,25 @@ function CommentCard(props) {
             ) : (
               ""
             )}
-            <button className="reply d-flex">
+            <button
+              onClick={() => settoReply(!toReply)}
+              className="reply d-flex"
+            >
               {reply}
               <span>Reply</span>
             </button>
           </div>
         </footer>
       </div>
+      <ReplyCard
+        commentdetail={commentdetail}
+        toReply={toReply}
+        username={username}
+        idNum={idNum}
+        comments={comments}
+        currentUser={currentUser}
+        currentId={id}
+      />
     </div>
   );
 }

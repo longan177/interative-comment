@@ -288,6 +288,7 @@ button {
   background-color: var(--clr-white);
   border-radius: 10px;
   max-width: 730px;
+
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   justify-items: center;
@@ -410,3 +411,7 @@ button:hover path {
   color: hsl(358, 79%, 80%);
 }
 /* button hover effect */
+
+.hidden {
+  display: none !important;
+}

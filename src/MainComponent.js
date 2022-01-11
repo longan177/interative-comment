@@ -11,6 +11,9 @@ function MainComponent() {
   const url =
     "https://my-json-server.typicode.com/longan177/mockjson-comment-interative/db";
   const urltest = "./data.txt";
+
+  const [toReply, settoReply] = useState(3);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(url);
@@ -74,19 +77,35 @@ function MainComponent() {
                 currentUser={currentUser}
                 handleDelete={handleDelete}
                 id={id}
+                idNum={idAmount}
+                comments={comments}
+                commentdetail={{
+                  currentUser,
+                  setcomments,
+                  comments,
+                }}
               />
+
               {replies.length > 0 && (
                 <ul>
                   {replies.map((reply) => {
                     const layerTwo = true;
                     return (
-                      <CommentCard
-                        key={reply.id}
-                        detail={reply}
-                        layerTwo={layerTwo}
-                        currentUser={currentUser}
-                        handleDelete={handleDelete}
-                      />
+                      <React.Fragment>
+                        <CommentCard
+                          key={reply.id}
+                          detail={reply}
+                          layerTwo={layerTwo}
+                          currentUser={currentUser}
+                          handleDelete={handleDelete}
+                          idNum={idAmount}
+                          commentdetail={{
+                            currentUser,
+                            setcomments,
+                            comments,
+                          }}
+                        />
+                      </React.Fragment>
                     );
                   })}
                 </ul>
