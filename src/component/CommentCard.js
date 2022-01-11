@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { deleteIcon, minus, plus, reply } from "./Icon";
 
 function CommentCard(props) {
-  const { content, createdAt, score, user } = props.detail;
-  const { layerTwo, currentUser } = props;
+  const { content, createdAt, score, user, id } = props.detail;
+  const { layerTwo, currentUser, handleDelete } = props;
   const {
     image: { png },
     username,
@@ -17,7 +17,7 @@ function CommentCard(props) {
           <header>
             <img className="avatar" src={png}></img>
             <a className="username" href="#">
-              {username}
+              <span style={{ color: "red" }}>{id}</span> {username}
             </a>
             <span className="date-detail">{createdAt}</span>
           </header>
@@ -49,7 +49,10 @@ function CommentCard(props) {
 
           <div className="btn-reposnse">
             {username === currentUser.username ? (
-              <button className="delete d-flex">
+              <button
+                onClick={() => handleDelete(id)}
+                className="delete d-flex"
+              >
                 {deleteIcon}
                 <span>Delete</span>
               </button>

@@ -6,12 +6,14 @@ function MainComponent() {
   const [comments, setcomments] = useState([]);
   const [currentUser, setcurrentUser] = useState("");
   const [otherUser, setOtherUser] = useState("");
-
+  const [idAmount, setidAmount] = useState(0);
+  const [replies, setreplies] = useState([]);
+  const url =
+    "https://my-json-server.typicode.com/longan177/mockjson-comment-interative/db";
+  const urltest = "./data.txt";
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        "https://my-json-server.typicode.com/longan177/mockjson-comment-interative/db"
-      );
+      const response = await fetch(url);
       const data = await response.json();
       setcomments(data.comments);
       setcurrentUser(data.currentUser);
@@ -19,6 +21,45 @@ function MainComponent() {
     fetchData();
   }, []);
 
+  function handleDelete(id) {
+    function filterReply(replies) {
+      return replies.filter((reply) => reply.id !== id);
+    }
+
+    setcomments(
+      comments.map((comment) => {
+        if (comment.replies.length === 0) {
+          return comment;
+        }
+        const clonereply = [...comment.replies];
+        const modifiedclonereply = clonereply.filter((reply) => {
+          return reply.id !== id;
+        });
+        const modifiedcomment = { ...comment, replies: modifiedclonereply };
+        console.log(modifiedcomment);
+
+        return modifiedcomment;
+      })
+    );
+  }
+
+  useEffect(() => {
+    getId();
+    const replies = [];
+    comments.forEach((comment) => {
+      const clone = comment.replies;
+      replies.push(clone);
+    });
+    setreplies(replies);
+  }, [comments]);
+  function getId() {
+    let totalComment = comments.length;
+    let totalReply = 0;
+    comments.forEach((comment) => (totalReply += comment.replies.length));
+    const idNum = totalComment + totalReply;
+
+    setidAmount(idNum);
+  }
   return (
     <div className="comment-container">
       <ul>
@@ -31,6 +72,8 @@ function MainComponent() {
                 detail={comment}
                 layerTwo={layerTwo}
                 currentUser={currentUser}
+                handleDelete={handleDelete}
+                id={id}
               />
               {replies.length > 0 && (
                 <ul>
@@ -42,6 +85,7 @@ function MainComponent() {
                         detail={reply}
                         layerTwo={layerTwo}
                         currentUser={currentUser}
+                        handleDelete={handleDelete}
                       />
                     );
                   })}
@@ -55,6 +99,7 @@ function MainComponent() {
         currentUser={currentUser}
         setcomments={setcomments}
         comment={comments}
+        idAmount={idAmount}
       />
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function ReplyCard(props) {
   const { layerTwo } = props;
-  const { comment, setcomments, currentUser } = props;
+  const { comment, setcomments, currentUser, idAmount } = props;
   const [input, setInput] = useState("");
 
   const handleSubmit = (e) => {
@@ -15,7 +15,7 @@ function ReplyCard(props) {
   function addComment() {
     const newComment = {
       user: currentUser,
-      id: Math.random(),
+      id: idAmount + 1,
       content: input,
       createdAt: "1 min ago",
       score: 0,
