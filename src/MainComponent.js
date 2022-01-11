@@ -21,26 +21,26 @@ function MainComponent() {
     fetchData();
   }, []);
 
-  function handleDelete(id) {
-    function filterReply(replies) {
-      return replies.filter((reply) => reply.id !== id);
+  function handleDelete(id, type = "comment") {
+    console.log(type);
+    if (type === "reply") {
+      setcomments(
+        comments.map((comment) => {
+          if (comment.replies.length === 0) {
+            return comment;
+          }
+          const clonereply = [...comment.replies];
+          const modifiedclonereply = clonereply.filter((reply) => {
+            return reply.id !== id;
+          });
+          const modifiedcomment = { ...comment, replies: modifiedclonereply };
+
+          return modifiedcomment;
+        })
+      );
+    } else {
+      setcomments(comments.filter((comment) => comment.id !== id));
     }
-
-    setcomments(
-      comments.map((comment) => {
-        if (comment.replies.length === 0) {
-          return comment;
-        }
-        const clonereply = [...comment.replies];
-        const modifiedclonereply = clonereply.filter((reply) => {
-          return reply.id !== id;
-        });
-        const modifiedcomment = { ...comment, replies: modifiedclonereply };
-        console.log(modifiedcomment);
-
-        return modifiedcomment;
-      })
-    );
   }
 
   useEffect(() => {

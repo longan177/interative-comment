@@ -17,7 +17,7 @@ function CommentCard(props) {
           <header>
             <img className="avatar" src={png}></img>
             <a className="username" href="#">
-              <span style={{ color: "red" }}>{id}</span> {username}
+              {username}
             </a>
             <span className="date-detail">{createdAt}</span>
           </header>
@@ -50,7 +50,9 @@ function CommentCard(props) {
           <div className="btn-reposnse">
             {username === currentUser.username ? (
               <button
-                onClick={() => handleDelete(id)}
+                onClick={() =>
+                  handleDelete(id, `${layerTwo ? "reply" : "comment"}`)
+                }
                 className="delete d-flex"
               >
                 {deleteIcon}
