@@ -88,6 +88,8 @@ function CommentCard(props) {
         comments={comments}
         currentUser={currentUser}
         currentId={id}
+        layerTwo={layerTwo}
+        settoReply={settoReply}
       />
     </div>
   );

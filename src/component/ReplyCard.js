@@ -13,12 +13,13 @@ function ReplyCard(props) {
     comments,
     idNum,
     currentId,
+    settoReply,
   } = props;
   const [input, setInput] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("toreply is ," + toReply);
+    // console.log("toreply is ," + toReply);
     switch (toReply) {
       case false:
         setInput("");
@@ -37,7 +38,6 @@ function ReplyCard(props) {
       content: input,
       createdAt: "1 min ago",
       score: 0,
-      replies: [],
       replyingTo: username,
     };
 
@@ -56,9 +56,24 @@ function ReplyCard(props) {
         return comment;
       }
     });
-    console.log("thing to set ", modifiedcomment);
 
-    commentdetail.setcomments(modifiedcomment);
+    function replyToReply() {
+      const findID = commentdetail.comments.findIndex((comment) => {
+        return comment.replies.some((reply) => reply.id === currentId);
+      });
+
+      const modifiedcommentlayer2 = [...commentdetail.comments];
+      modifiedcommentlayer2[findID].replies.push(newReply);
+      console.log(modifiedcommentlayer2[findID]);
+      commentdetail.setcomments(modifiedcommentlayer2);
+      settoReply(true);
+    }
+
+    if (!layerTwo) {
+      commentdetail.setcomments(modifiedcomment);
+    } else {
+      replyToReply();
+    }
   }
 
   // --------------
@@ -90,7 +105,7 @@ function ReplyCard(props) {
       replies: [],
     };
     const commentClone = [...comment];
-    console.log(newComment);
+    // console.log(newComment);
     // console.log(commentClone);
     commentClone.push(newComment);
     setcomments(commentClone);
@@ -103,6 +118,7 @@ function ReplyCard(props) {
       }`}
     >
       <div className={`reply-card ${layerTwo && "layerTwo"} `}>
+        {/* <h4>{layerTwo ? "layerTwo" : "layerOne"}</h4> */}
         <div className="textarea-wrapper">
           <textarea
             onChange={(e) => setInput(e.target.value)}
