@@ -368,6 +368,10 @@ button {
   position: relative;
   width: 92%;
 }
+.comment-card-wrapper-forReply {
+  width: 100%;
+}
+
 .layerTwo {
   /* background-color: gold; */
   width: 88%;
@@ -414,4 +418,17 @@ button:hover path {
 
 .hidden {
   display: none !important;
+}
+
+code {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+pre {
+  white-space: pre-wrap; /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
 }

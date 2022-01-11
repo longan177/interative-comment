@@ -13,11 +13,14 @@ function CommentCard(props) {
     comments,
   } = props;
   const [toReply, settoReply] = useState(true);
+  const [isEditing, setisEditing] = useState(false);
+  const [editItem, setEditItem] = useState("");
   const {
     image: { png },
     username,
   } = user;
 
+  console.log(currentUser);
   const [currentScore, setcurrentScore] = useState(score);
   return (
     <div className={`comment-card-wrapper ${layerTwo && "wrapper-layerTwo"}`}>
@@ -70,13 +73,24 @@ function CommentCard(props) {
             ) : (
               ""
             )}
-            <button
-              onClick={() => settoReply(!toReply)}
-              className="reply d-flex"
-            >
-              {reply}
-              <span>Reply</span>
-            </button>
+
+            {currentUser.username === username ? (
+              <button
+                onClick={() => settoReply(!toReply)}
+                className="reply d-flex"
+              >
+                {reply}
+                <span>Edit</span>
+              </button>
+            ) : (
+              <button
+                onClick={() => settoReply(!toReply)}
+                className="reply d-flex"
+              >
+                {reply}
+                <span>Reply</span>
+              </button>
+            )}
           </div>
         </footer>
       </div>

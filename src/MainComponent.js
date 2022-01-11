@@ -24,6 +24,11 @@ function MainComponent() {
     fetchData();
   }, []);
 
+  // for api reference
+  const jsondata = JSON.stringify(comments, null, 4);
+
+  // for api reference
+
   function handleDelete(id, type = "comment") {
     console.log(type);
     if (type === "reply") {
@@ -120,6 +125,14 @@ function MainComponent() {
         comment={comments}
         idAmount={idAmount}
       />
+      <fieldset style={{ marginTop: "5rem" }}>
+        <legend style={{ textAlign: "center" }}>
+          <h1>API</h1>
+        </legend>
+        <pre className="rock">
+          <code>{jsondata}</code>
+        </pre>
+      </fieldset>
     </div>
   );
 }

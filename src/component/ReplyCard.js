@@ -19,6 +19,10 @@ function ReplyCard(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!input) {
+      return;
+    }
+
     // console.log("toreply is ," + toReply);
     switch (toReply) {
       case false:
@@ -35,7 +39,7 @@ function ReplyCard(props) {
     const newReply = {
       user: currentUser,
       id: idNum + 1,
-      content: input,
+      content: `@${username} ${input}`,
       createdAt: "1 min ago",
       score: 0,
       replyingTo: username,
@@ -76,25 +80,6 @@ function ReplyCard(props) {
     }
   }
 
-  // --------------
-
-  // setcomments(
-  //   comments.map((comment) => {
-  //     if (comment.replies.length === 0) {
-  //       return comment;
-  //     }
-  //     const clonereply = [...comment.replies];
-  //     const modifiedclonereply = clonereply.filter((reply) => {
-  //       return reply.id !== id;
-  //     });
-  //     const modifiedcomment = { ...comment, replies: modifiedclonereply };
-
-  //     return modifiedcomment;
-  //   })
-  // );
-
-  // ---------------
-
   function addComment() {
     const newComment = {
       id: idAmount + 1,
@@ -113,12 +98,11 @@ function ReplyCard(props) {
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
-      className={`comment-card-wrapper ${layerTwo && "wrapper-layerTwo"} ${
-        toReply && "hidden"
-      }`}
+      className={`comment-card-wrapper ${
+        !toReply && "comment-card-wrapper-forReply"
+      }  ${layerTwo && "wrapper-layerTwo"} ${toReply && "hidden"}`}
     >
       <div className={`reply-card ${layerTwo && "layerTwo"} `}>
-        {/* <h4>{layerTwo ? "layerTwo" : "layerOne"}</h4> */}
         <div className="textarea-wrapper">
           <textarea
             onChange={(e) => setInput(e.target.value)}
@@ -126,6 +110,7 @@ function ReplyCard(props) {
             rows="4"
             cols="50"
             placeholder="Add a comment.."
+            required
           ></textarea>
         </div>
         <img className="avatar" src="/images/avatars/image-amyrobson.png"></img>
