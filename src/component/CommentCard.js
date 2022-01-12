@@ -25,35 +25,68 @@ function CommentCard(props) {
 
   function handleEdit() {
     setisEditing(!isEditing);
-    console.log("comment detail", commentdetail);
-    console.log("commentdetail.comment", commentdetail.comments);
-    const index = commentdetail.comments.findIndex(
-      (comment) => comment.id === id
-    );
-    const content = commentdetail.comments[index].content;
-    console.log("content from edit", content);
-    setInput(content);
+    if (!layerTwo) {
+      const index = commentdetail.comments.findIndex(
+        (comment) => comment.id === id
+      );
+      const content = commentdetail.comments[index].content;
+
+      setInput(content);
+    } else {
+      const index = commentdetail.comments.findIndex((comment) => {
+        return comment.replies.some((reply) => reply.id === id);
+      });
+      const replyindex = commentdetail.comments[index].replies.findIndex(
+        (reply) => reply.id === id
+      );
+      const replycontent =
+        commentdetail.comments[index].replies[replyindex].content;
+
+      setInput(replycontent);
+    }
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    const editIndex = commentdetail.comments.findIndex(
-      (comment) => comment.id === id
-    );
-    const modifiedcomment = commentdetail.comments.map((comment, index) => {
-      console.log("current Input", input);
-      console.log(index);
-      if (index === editIndex) {
-        console.log(comment);
-        return { ...comment, content: input };
-      }
-      return comment;
-    });
+    if (!layerTwo) {
+      const editIndex = commentdetail.comments.findIndex(
+        (comment) => comment.id === id
+      );
+      const modifiedcomment = commentdetail.comments.map((comment, index) => {
+        if (index === editIndex) {
+          return { ...comment, content: input };
+        }
+        return comment;
+      });
+      commentdetail.setcomments(modifiedcomment);
+    } else {
+      const editIndex = commentdetail.comments.findIndex((comment) => {
+        return comment.replies.some((reply) => reply.id === id);
+      }); //firstlayer
+      const replyindex = commentdetail.comments[editIndex].replies.findIndex(
+        (reply) => reply.id === id
+      ); //2ndlayer
+      const replycontent =
+        commentdetail.comments[editIndex].replies[replyindex].content;
+      const modifiedcomment = commentdetail.comments.map((comment, index) => {
+        if (index === editIndex) {
+          const clonereply = [...comment.replies];
+          const deeperclonereply = clonereply.map((reply) => {
+            if (reply.id === id) {
+              return { ...reply, content: input };
+            }
+            return reply;
+          });
+          return { ...comment, replies: deeperclonereply };
+        }
+        return comment;
+      });
+      commentdetail.setcomments(modifiedcomment);
+    }
 
-    commentdetail.setcomments(modifiedcomment);
     setisEditing(!isEditing);
   }
-  // console.log(currentUser);
+
   const [currentScore, setcurrentScore] = useState(score);
   return (
     <div className={`comment-card-wrapper ${layerTwo && "wrapper-layerTwo"}`}>
