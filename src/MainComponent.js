@@ -14,8 +14,6 @@ function MainComponent() {
     "https://my-json-server.typicode.com/longan177/mockjson-comment-interative/db";
   const urltest = "./data.txt";
 
-  const [toReply, settoReply] = useState(3);
-
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(url);
@@ -55,12 +53,6 @@ function MainComponent() {
 
   useEffect(() => {
     getId();
-    const replies = [];
-    comments.forEach((comment) => {
-      const clone = comment.replies;
-      replies.push(clone);
-    });
-    setreplies(replies);
   }, [comments]);
   function getId() {
     let totalComment = comments.length;
@@ -127,18 +119,19 @@ function MainComponent() {
         idAmount={idAmount}
       />
       <hr></hr>
-      <h3>Created by Wei Loong</h3>
+      <h3>Created by Wei Loong </h3>
       <code>
         If you would like to check the data structure, feel free to click the
         button and scroll down. You could also notice how the CRUD operations
-        interact with the data below :) Check out the source code{" "}
+        interact with the data below :) Check out the source code
         <a
           target="_blank"
           href="https://github.com/longan177/interative-comment"
         >
           {" "}
           here
-        </a>
+        </a>{" "}
+        and feel free to give some feedback.
       </code>
 
       <button onClick={() => setshowAPI(!showAPI)} className="btn-showAPI">

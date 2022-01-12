@@ -113,7 +113,7 @@ function ReplyCard(props) {
             required
           ></textarea>
         </div>
-        <img className="avatar" src="/images/avatars/image-amyrobson.png"></img>
+        <img className="avatar" src="/images/avatars/image-weiloong.png"></img>
         <button className="btn-send d-flex">SEND</button>
       </div>
     </form>

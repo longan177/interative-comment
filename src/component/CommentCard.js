@@ -4,6 +4,7 @@ import ReplyCard from "./ReplyCard";
 
 function CommentCard(props) {
   const { content, createdAt, score, user, id } = props.detail;
+
   const {
     layerTwo,
     currentUser,
@@ -22,6 +23,10 @@ function CommentCard(props) {
     image: { png },
     username,
   } = user;
+
+  function updatescore(score) {
+    console.log(score);
+  }
 
   function handleEdit() {
     setisEditing(!isEditing);
