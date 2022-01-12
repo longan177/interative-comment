@@ -17,6 +17,7 @@ function CommentCard(props) {
   const [editItem, setEditItem] = useState(null);
   const [setEditType, setSetEditType] = useState(null);
   const [input, setInput] = useState("");
+
   const {
     image: { png },
     username,
@@ -26,8 +27,32 @@ function CommentCard(props) {
     setisEditing(!isEditing);
     console.log("comment detail", commentdetail);
     console.log("commentdetail.comment", commentdetail.comments);
+    const index = commentdetail.comments.findIndex(
+      (comment) => comment.id === id
+    );
+    const content = commentdetail.comments[index].content;
+    console.log("content from edit", content);
+    setInput(content);
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    const editIndex = commentdetail.comments.findIndex(
+      (comment) => comment.id === id
+    );
+    const modifiedcomment = commentdetail.comments.map((comment, index) => {
+      console.log("current Input", input);
+      console.log(index);
+      if (index === editIndex) {
+        console.log(comment);
+        return { ...comment, content: input };
+      }
+      return comment;
+    });
+
+    commentdetail.setcomments(modifiedcomment);
+    setisEditing(!isEditing);
+  }
   // console.log(currentUser);
   const [currentScore, setcurrentScore] = useState(score);
   return (
@@ -41,22 +66,26 @@ function CommentCard(props) {
             </a>
             <span className="date-detail">{createdAt}</span>
           </header>
-          {isEditing ? (
-            <textarea
-              className="textarea-edit"
-              onChange={(e) => setInput(e.target.value)}
-              value={input}
-              rows="4"
-              cols="50"
-              placeholder="Add a comment.."
-              required
-            ></textarea>
-          ) : (
-            <p>{content}</p>
-          )}
-          <aside className={`btn-update ${isEditing ? "btn-update-show" : ""}`}>
-            <button>UPDATE</button>
-          </aside>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            {isEditing ? (
+              <textarea
+                className="textarea-edit"
+                onChange={(e) => setInput(e.target.value)}
+                value={input}
+                rows="4"
+                cols="50"
+                placeholder="Add a comment.."
+                required
+              ></textarea>
+            ) : (
+              <p>{content}</p>
+            )}
+            <aside
+              className={`btn-update ${isEditing ? "btn-update-show" : ""}`}
+            >
+              <button>UPDATE</button>
+            </aside>
+          </form>
         </article>
         <footer>
           <div className="vote-number d-flex">
