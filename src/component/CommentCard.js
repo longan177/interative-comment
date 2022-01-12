@@ -14,13 +14,21 @@ function CommentCard(props) {
   } = props;
   const [toReply, settoReply] = useState(true);
   const [isEditing, setisEditing] = useState(false);
-  const [editItem, setEditItem] = useState("");
+  const [editItem, setEditItem] = useState(null);
+  const [setEditType, setSetEditType] = useState(null);
+  const [input, setInput] = useState("");
   const {
     image: { png },
     username,
   } = user;
 
-  console.log(currentUser);
+  function handleEdit() {
+    setisEditing(!isEditing);
+    console.log("comment detail", commentdetail);
+    console.log("commentdetail.comment", commentdetail.comments);
+  }
+
+  // console.log(currentUser);
   const [currentScore, setcurrentScore] = useState(score);
   return (
     <div className={`comment-card-wrapper ${layerTwo && "wrapper-layerTwo"}`}>
@@ -33,7 +41,22 @@ function CommentCard(props) {
             </a>
             <span className="date-detail">{createdAt}</span>
           </header>
-          <p>{content}</p>
+          {isEditing ? (
+            <textarea
+              className="textarea-edit"
+              onChange={(e) => setInput(e.target.value)}
+              value={input}
+              rows="4"
+              cols="50"
+              placeholder="Add a comment.."
+              required
+            ></textarea>
+          ) : (
+            <p>{content}</p>
+          )}
+          <aside className={`btn-update ${isEditing ? "btn-update-show" : ""}`}>
+            <button>UPDATE</button>
+          </aside>
         </article>
         <footer>
           <div className="vote-number d-flex">
@@ -75,10 +98,7 @@ function CommentCard(props) {
             )}
 
             {currentUser.username === username ? (
-              <button
-                onClick={() => settoReply(!toReply)}
-                className="reply d-flex"
-              >
+              <button onClick={handleEdit} className="reply d-flex">
                 {reply}
                 <span>Edit</span>
               </button>

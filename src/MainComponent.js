@@ -8,6 +8,8 @@ function MainComponent() {
   const [otherUser, setOtherUser] = useState("");
   const [idAmount, setidAmount] = useState(0);
   const [replies, setreplies] = useState([]);
+  const [showAPI, setshowAPI] = useState(false);
+
   const url =
     "https://my-json-server.typicode.com/longan177/mockjson-comment-interative/db";
   const urltest = "./data.txt";
@@ -125,7 +127,10 @@ function MainComponent() {
         comment={comments}
         idAmount={idAmount}
       />
-      <fieldset style={{ marginTop: "5rem" }}>
+      <button onClick={() => setshowAPI(!showAPI)} className="btn-showAPI">
+        Show JSON data
+      </button>
+      <fieldset className={`${showAPI ? "showAPI" : ""}`}>
         <legend style={{ textAlign: "center" }}>
           <h1>API</h1>
         </legend>
