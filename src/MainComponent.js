@@ -98,9 +98,8 @@ function MainComponent() {
                   {replies.map((reply) => {
                     const layerTwo = true;
                     return (
-                      <React.Fragment>
+                      <React.Fragment key={reply.id}>
                         <CommentCard
-                          key={reply.id}
                           detail={reply}
                           layerTwo={layerTwo}
                           currentUser={currentUser}
@@ -127,14 +126,35 @@ function MainComponent() {
         comment={comments}
         idAmount={idAmount}
       />
+      <hr></hr>
+      <h3>Created by Wei Loong</h3>
+      <code>
+        If you would like to check the data structure, feel free to click the
+        button and scroll down. You could also notice how the CRUD operations
+        interact with the data below :) Check out the source code{" "}
+        <a
+          target="_blank"
+          href="https://github.com/longan177/interative-comment"
+        >
+          {" "}
+          here
+        </a>
+      </code>
+
       <button onClick={() => setshowAPI(!showAPI)} className="btn-showAPI">
         Show JSON data
       </button>
+
       <fieldset className={`${showAPI ? "showAPI" : ""}`}>
         <legend style={{ textAlign: "center" }}>
-          <h1>API</h1>
+          <h1>data.JSON</h1>
         </legend>
-        <pre className="rock">
+        <pre className="api-container">
+          <h4 style={{ textAlign: "center" }}>
+            <a target="_blank" href={url}>
+              API link (static)
+            </a>
+          </h4>
           <code>{jsondata}</code>
         </pre>
       </fieldset>
