@@ -12,7 +12,6 @@ function MainComponent() {
 
   const url =
     "https://my-json-server.typicode.com/longan177/mockjson-comment-interative/db";
-  const urltest = "./data.txt";
 
   useEffect(() => {
     const fetchData = async () => {

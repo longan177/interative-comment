@@ -23,7 +23,6 @@ function ReplyCard(props) {
       return;
     }
 
-    // console.log("toreply is ," + toReply);
     switch (toReply) {
       case false:
         setInput("");
@@ -45,15 +44,10 @@ function ReplyCard(props) {
       replyingTo: username,
     };
 
-    console.log("username is ", username);
-    console.log("commentdetail", commentdetail);
-    console.log("commentdetail.comment", commentdetail.comments);
-    console.log("clicked id", currentId);
     const modifiedcomment = commentdetail.comments.map((comment) => {
       if (comment.id === currentId) {
-        // console.log(commentdetail.comments);
         const clonereply = [...comment.replies];
-        console.log("clone reply", clonereply);
+
         clonereply.push(newReply);
         return { ...comment, replies: clonereply };
       } else {
@@ -65,10 +59,8 @@ function ReplyCard(props) {
       const findID = commentdetail.comments.findIndex((comment) => {
         return comment.replies.some((reply) => reply.id === currentId);
       });
-
       const modifiedcommentlayer2 = [...commentdetail.comments];
       modifiedcommentlayer2[findID].replies.push(newReply);
-      console.log(modifiedcommentlayer2[findID]);
       commentdetail.setcomments(modifiedcommentlayer2);
       settoReply(true);
     }
@@ -90,8 +82,7 @@ function ReplyCard(props) {
       replies: [],
     };
     const commentClone = [...comment];
-    // console.log(newComment);
-    // console.log(commentClone);
+
     commentClone.push(newComment);
     setcomments(commentClone);
   }
